@@ -7,15 +7,19 @@
                 {{ post.published_date }}
             </div>
         {% else %}
-            <form method="POST" action="{% url 'post_publish' pk=post.pk %}" class="post-form">{% csrf_token %}
-                <button type="submit" class="post btn btn-info" name="publish">Publish</button>
+            <form method="POST" action="{% url 'post_publish' pk=post.pk %}" class="post-form d-inline-block mt-2">{% csrf_token %}
+                <button type="submit" class="post btn btn-info" name="publish">
+                    <i class="bi bi-cloud-upload"></i> Publish
+                </button>
             </form>
         {% endif %}
         {% if user.is_authenticated %}
-            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil">EDIT BUTTON</span></a>
-            <form method="POST" action="{% url 'post_remove' pk=post.pk %}" class="post-form">{% csrf_token %}
-                <button type="submit" class="post btn btn-danger" name="delete">
-                    <span class="glyphicon glyphicon-remove">DEL</span>
+            <a class="post btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">
+                    <i class="bi bi-pencil"></i> Edit
+            </a>
+            <form method="POST" action="{% url 'post_remove' pk=post.pk %}" class="post-form d-inline-block">{% csrf_token %}
+                <button type="submit" class="post btn btn-danger" name="delete"> 
+                    <i class="bi bi-trash"></i> Delete
                 </button>
             </form>
         {% endif %}
